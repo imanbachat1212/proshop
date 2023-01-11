@@ -28,6 +28,7 @@ import {
 } from '../constants/userConstant'
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstant'
 
+const API_URL = 'https://proshop-api-c0dd.onrender.com'
 
 export const login = (email, password) => async (dispatch) => {
   try {
@@ -41,7 +42,7 @@ export const login = (email, password) => async (dispatch) => {
       },
     }
     const { data } = await axios.post(
-      `${process.env.REACT_APP_API}/api/users/login`,
+      `${API_URL}/api/users/login`,
       {
         email,
         password,
@@ -88,7 +89,7 @@ export const register = (name, email, password) => async (dispatch) => {
       },
     }
     const { data } = await axios.post(
-      `${process.env.REACT_APP_API}/api/users/`,
+      `${API_URL}/api/users/`,
       {
         name,
         email,
@@ -133,7 +134,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.get(`${process.env.REACT_APP_API}/api/users/${id}`, config)
+    const { data } = await axios.get(`${API_URL}/api/users/${id}`, config)
 
     dispatch({
       type: USER_DETAILS_SUCCESS,
@@ -172,7 +173,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.put(`${process.env.REACT_APP_API}/api/users/profile`, user, config)
+    const { data } = await axios.put(`${API_URL}/api/users/profile`, user, config)
 
     dispatch({
       type: USER_UPDATE_PROFILE_SUCCESS,
@@ -213,7 +214,7 @@ export const listUsers = () => async (dispatch, getState) => {
       },
     }
 
-    const { data } = await axios.get(`${process.env.REACT_APP_API}/api/users`, config)
+    const { data } = await axios.get(`${API_URL}/api/users`, config)
 
     dispatch({
       type: USER_LIST_SUCCESS,
@@ -251,7 +252,7 @@ export const deleteUser = (id) => async (dispatch, getState) => {
       },
     }
 
-    await axios.delete(`${process.env.REACT_APP_API}/api/users/${id}`, config)
+    await axios.delete(`${API_URL}/api/users/${id}`, config)
 
     dispatch({
       type: USER_DELETE_SUCCESS
@@ -285,7 +286,7 @@ export const updateUser = (user) => async (dispatch, getState) => {
       },
     }
 
-    const {data} =await axios.put(`${process.env.REACT_APP_API}/api/users/${user._id}`, user,config)
+    const {data} =await axios.put(`${API_URL}/api/users/${user._id}`, user,config)
 
     dispatch({ type: USER_UPDATE_SUCCESS})
     dispatch({ type: USER_DETAILS_SUCCESS, payload:data})
